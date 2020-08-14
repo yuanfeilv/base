@@ -1,13 +1,13 @@
-package com.ambity.learn;
+package com.ambity.kafkalearn;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LearnApplication {
+public class KafkaLearnApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LearnApplication.class, args);
+        SpringApplication.run(KafkaLearnApplication.class, args);
     }
 
 }
