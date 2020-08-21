@@ -1,22 +1,17 @@
-package com.ambity.client2;
+package com.ambity.client1;
 
-import com.ambity.client2.feign.Client1Feign;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.ApplicationContext;
-
-import java.util.Arrays;
-import java.util.List;
 
 @SpringBootApplication
 @EnableFeignClients
 @EnableEurekaClient
-public class Client2Application {
-    public static ApplicationContext applicationContext = null;
+public class Client1Application {
+
     public static void main(String[] args) {
-        applicationContext = SpringApplication.run(Client2Application.class, args);
+        SpringApplication.run(Client1Application.class, args);
     }
 
 }

@@ -15,6 +15,29 @@ server:
 ribbon:
   eureka:
     enabled: true
+#  eager-load:    #饥饿加载模式
+#    enabled: true
+#    clients: pay-bestpay-code
 feign:
   hystrix:
-    enabled: true
+   enabled: true    #feign客户端对Hystrix支持，默认是关闭
+hystrix:
+  config:
+    stream:
+      maxConcurrentConnections: 10
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 50000
+
+client1:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #配置规则 最空闲连接策略
+    ConnectTimeout: 50000 #请求连接超时时间
+    ReadTimeout: 100000 #请求处理的超时时间
+    OkToRetryOnAllOperations: false #对所有请求都进行重试
+    MaxAutoRetriesNextServer: 0 #切换实例的重试次数
+    MaxAutoRetries: 0 #对当前实例的重试

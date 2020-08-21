@@ -2,7 +2,7 @@ package com.ambity.springbootbase.compontscantest;
 
 import com.ambity.springbootbase.importtest.ImportSelectTestBean;
 import org.springframework.context.annotation.ImportSelector;
-import org.springframework.core.annotation.AnnotationAttributes;
+
 import org.springframework.core.type.AnnotationMetadata;
 
 public class ImportSelectTest implements ImportSelector {

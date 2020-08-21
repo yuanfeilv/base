@@ -11,11 +11,11 @@ import org.springframework.context.annotation.Configuration;
  * @author haijun.gao
  *
  */
-@Configuration
-public class FeignConfiguration {
-
-    @Bean
-    public RequestInterceptor requestInterceptor(){
-        return new FeignRequestInterceptor();
-    }
-}
+//@Configuration
+//public class FeignConfiguration {
+//
+//    @Bean
+//    public RequestInterceptor requestInterceptor(){
+//        return new FeignRequestInterceptor();
+//    }
+//}

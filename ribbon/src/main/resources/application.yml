@@ -1,0 +1,14 @@
+server:
+  port: 8082
+
+#restpay-ali-app: # ΢���������
+#  ribbon:
+#    eureka:
+#      enabled: true    #Eureka��Bibbon����ʵ����ά��ʵ��,Ĭ���ǿ���
+#   # NIWSServerListFilterClassName:   # ��ȡ΢����Ĺ�����
+#    ConnectTimeout: 10000
+#    ReadTimeout: 40000
+#    OkToRetryOnAllOperations: false    #�����в������󶼽�������
+#    MaxAutoRetries: 0    #�Ե�ǰʵ�������Դ�������������1������
+#    MaxAutoRetriesNextServer: 0    #�л�ʵ�������Դ�������������1��server
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # ���ؾ������
