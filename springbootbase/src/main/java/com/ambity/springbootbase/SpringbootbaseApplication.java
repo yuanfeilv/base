@@ -23,8 +23,8 @@ import java.util.List;
 public class SpringbootbaseApplication {
     public static void main(String[] args) {
         ApplicationContext applicationContext =  SpringApplication.run(SpringbootbaseApplication.class, args);
-        String [] appnames = applicationContext.getBeanDefinitionNames();
-        List<String> list = Arrays.asList(appnames);
-        list.stream().forEach((String string)->System.out.println(string));
+//        String [] appnames = applicationContext.getBeanDefinitionNames();
+//        List<String> list = Arrays.asList(appnames);
+//        list.stream().forEach((String string)->System.out.println(string));
     }
 }

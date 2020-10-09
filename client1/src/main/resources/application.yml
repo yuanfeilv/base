@@ -11,7 +11,7 @@ eureka:    #eureka����
     leaseExpirationDurationInSeconds: 15
     preferIpAddress: true
 server:
-  port: 8081
+  port: 8091
 ribbon:
   eureka:
     enabled: true

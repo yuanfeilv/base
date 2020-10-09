@@ -1,5 +1,5 @@
 
-eureka:    #eureka����
+eureka:
   client:
     registryFetchIntervalSeconds: 5
     registerWithEureka: true
@@ -33,11 +33,21 @@ hystrix:
           thread:
             timeoutInMilliseconds: 50000
 
+    'Client1Feign#client1()':
+      threadPoolKeyOverride: 'Client1Feign#client1()'
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 45000
+  threadpool:
+
+
 client1:
   ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #配置规则 最空闲连接策略
-    ConnectTimeout: 50000 #请求连接超时时间
-    ReadTimeout: 100000 #请求处理的超时时间
-    OkToRetryOnAllOperations: false #对所有请求都进行重试
-    MaxAutoRetriesNextServer: 0 #切换实例的重试次数
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #配置规则 最空闲连接策略
+    ConnectTimeout: 5000 #请求连接超时时间
+    ReadTimeout: 10000 #请求处理的超时时间
+    OkToRetryOnAllOperations: true #对所有请求都进行重试
+    MaxAutoRetriesNextServer: 1 #切换实例的重试次数
     MaxAutoRetries: 0 #对当前实例的重试

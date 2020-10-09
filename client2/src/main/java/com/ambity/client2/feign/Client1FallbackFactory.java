@@ -3,6 +3,7 @@ package com.ambity.client2.feign;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class Client1FallbackFactory implements FallbackFactory<Client1Feign> {
     @Override

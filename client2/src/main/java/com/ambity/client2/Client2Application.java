@@ -1,6 +1,7 @@
 package com.ambity.client2;
 
 import com.ambity.client2.feign.Client1Feign;
+import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -17,6 +18,7 @@ public class Client2Application {
     public static ApplicationContext applicationContext = null;
     public static void main(String[] args) {
         applicationContext = SpringApplication.run(Client2Application.class, args);
+        HystrixRequestContext.initializeContext();
     }
 
 }
