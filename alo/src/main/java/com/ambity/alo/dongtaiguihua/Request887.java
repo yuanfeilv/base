@@ -21,4 +21,5 @@ package com.ambity.alo.dongtaiguihua;
  * 因此，在最坏的情况下我们需要移动 2 次以确定 F 是多少。
  */
 public class Request887 {
+
 }
