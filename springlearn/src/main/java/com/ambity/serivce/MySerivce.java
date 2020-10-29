@@ -15,4 +15,23 @@ public class MySerivce {
     public void sayHello(){
         System.out.println("111");
     }
+    public void test1(){
+        throw new RuntimeException("111");
+    }
+    public void test2(){
+        test1();
+    }
+    public void test3(){
+        test2();
+    }
+
+    public static void main(String[] args) {
+        MySerivce mySerivce = new MySerivce();
+        try {
+            mySerivce.test3();
+        }catch (Exception e){
+            System.out.println(222);
+        }
+
+    }
 }
