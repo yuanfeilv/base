@@ -2,24 +2,20 @@ package com.ambity;
 
 import lombok.SneakyThrows;
 
+import java.util.concurrent.*;
+import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ReetLockLearn {
-    public static void main(String[] args) throws InterruptedException {
-        ReentrantLock reentrantLock = new ReentrantLock();
-        Thread thread = new Thread(new Runnable() {
-            @SneakyThrows
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1,1,1, TimeUnit.MINUTES,new ArrayBlockingQueue<>(1));
+        Future<String> future =  threadPoolExecutor.submit(new Callable<String>() {
             @Override
-            public void run() {
-                reentrantLock.lock();
-                Thread.sleep(20000);
-                reentrantLock.unlock();
+            public String call() throws Exception {
+                Thread.sleep(10000);
+                return "11";
             }
         });
-        thread.start();
-        Thread.sleep(2000);
-        reentrantLock.lock();
-        Thread.sleep(2000);
-        reentrantLock.unlock();
+        future.get();
     }
 }
