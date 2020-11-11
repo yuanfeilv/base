@@ -21,7 +21,6 @@
 // *
 // * 你最终要支付 5 + 7 + 9 = 21 块钱。
 // * 给定 n ≥ 1，计算你至少需要拥有多少现金才能确保你能赢得这个游戏。
-// *
 // */
 //public class Question375 {
 //    public int getMoneyAmount(int n) {

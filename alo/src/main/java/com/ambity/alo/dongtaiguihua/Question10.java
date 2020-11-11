@@ -37,8 +37,9 @@ package com.ambity.alo.dongtaiguihua;
  */
 public class Question10 {
     public boolean isMatch(String s, String p) {
-        if (s == null || p == null)
+        if (s == null || p == null){
             return false;
+        }
         int m = s.length();
         int n = p.length();
         boolean[][] dp = new boolean[m + 1][n + 1];
