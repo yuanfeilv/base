@@ -55,5 +55,4 @@ public class Question34 {
         list.remove(list.size()-1);
         return;
     }
-
 }
