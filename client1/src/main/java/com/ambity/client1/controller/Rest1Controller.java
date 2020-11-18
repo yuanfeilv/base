@@ -13,11 +13,15 @@ import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicMarkableReference;
+import java.util.concurrent.atomic.AtomicStampedReference;
 
 @RestController
 public class Rest1Controller {
     @RequestMapping("client1")
     public String client1() throws Exception{
+        AtomicStampedReference<Integer> atomicStampedReference = new AtomicStampedReference<>(1,1);
+        
         System.out.println("进入超时逻辑");
         System.out.println("进入超时退出");
         return "i am client3";

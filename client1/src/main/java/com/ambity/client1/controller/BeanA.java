@@ -1,13 +1,9 @@
 package com.ambity.client1.controller;
 
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class BeanA {
@@ -34,4 +30,11 @@ public class BeanA {
          System.out.println("aaa");
     }
 
+    public static void main(String[] args) {
+        String a = "74";
+        System.out.println(a.hashCode()/32%8);
+        System.out.println(a.hashCode()%32);
+        System.out.println(238/32);
+        System.out.println(238/8);
+    }
 }
