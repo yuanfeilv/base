@@ -20,5 +20,4 @@ public class Client2Application {
         applicationContext = SpringApplication.run(Client2Application.class, args);
         HystrixRequestContext.initializeContext();
     }
-
 }

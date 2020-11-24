@@ -14,6 +14,11 @@ public class Client1FallbackFactory implements FallbackFactory<Client1Feign> {
             public String client1() {
                 return "client1 fallack";
             }
+
+            @Override
+            public String clienttest() {
+                return "clienttest fallack";
+            }
         };
     }
 }

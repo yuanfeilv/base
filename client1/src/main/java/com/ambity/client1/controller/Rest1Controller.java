@@ -20,11 +20,11 @@ import java.util.concurrent.atomic.AtomicStampedReference;
 public class Rest1Controller {
     @RequestMapping("client1")
     public String client1() throws Exception{
-        AtomicStampedReference<Integer> atomicStampedReference = new AtomicStampedReference<>(1,1);
-        
-        System.out.println("进入超时逻辑");
-        System.out.println("进入超时退出");
         return "i am client3";
+    }
+    @RequestMapping("clienttest")
+    public String clienttest() throws Exception{
+        return "i am clienttest";
     }
 
     @PostMapping("test2")

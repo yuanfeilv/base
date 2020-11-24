@@ -1,0 +1,143 @@
+<!-- Logback configuration. See http://logback.qos.ch/manual/index.html -->
+<configuration scan="true" scanPeriod="60 seconds">
+	
+	<springProperty scope="context" name="springAppName" source="spring.application.name"/>
+	<property name="LOG_PATH" value="/data/logs/${springAppName}" />
+	<property name="FLAT_LOG_PATTERN" value='%date{yyyy-MM-dd HH:mm:ss.SSS,GMT+08:00} %-5level ${springAppName:-} %X{elapsedTime:-0} %X{busisysid:-} %X{orderno:-} %X{trans_no:-} %X{x-ca-request-id:-} %X{X-B3-TraceId:-} %X{X-B3-SpanId:-} %X{X-B3-ParentSpanId:-} %X{X-Span-Export:-} ${PID:-} [%thread] %logger{40} -%message%n'/>
+	<property name="JSON_LOG_PATTERN" value='\
+						{\
+                        "timestamp":"%date{yyyy-MM-dd HH:mm:ss.SSS,GMT+08:00}",\
+                        "level": "%level",\
+                        "service": "${springAppName:-}",\
+                        "elapsedTime": "#asLong{%mdc{elapsedTime:-0}}",\
+						"busisysid": "%X{busisysid:-}",\
+						"orderno": "%X{orderno:-}",\
+						"trans_no": "%X{trans_no:-}",\
+                        "eagId": "%X{x-ca-request-id:-}",\
+                        "traceId": "%X{X-B3-TraceId:-}",\
+                        "spanId": "%X{X-B3-SpanId:-}",\
+                        "parentSpanId": "%X{X-B3-ParentSpanId:-}",\
+                        "exportable": "%X{X-Span-Export:-}",\
+                        "pid": "${PID:-}",\
+                        "thread": "%thread",\
+                        "clazz": "%logger{40}",\
+                        "message": "%message",\
+                        "stackTrace": "%exception{5}"\
+                        }'/>
+
+	<!-- Appender to log to console in a flat format -->
+    <appender name="flatConsole" class="ch.qos.logback.core.ConsoleAppender">
+    	<encoder>
+    		<pattern>${FLAT_LOG_PATTERN}</pattern>
+    		<charset>UTF-8</charset>
+    	</encoder>
+    </appender>
+    
+    <!-- Appender to log to console in a JSON format -->
+    <appender name="jsonConsole" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <pattern>
+                    <pattern>${JSON_LOG_PATTERN}</pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <!-- Appender to log to file in a JSON format -->
+    <appender name="jsonFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/info.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/info-%d{yyyyMMdd}.%i.log</fileNamePattern>
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>7</maxHistory>
+			<totalSizeCap>10GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <pattern>
+                    <pattern>${JSON_LOG_PATTERN}</pattern>
+                </pattern>
+            </providers>
+        </encoder>
+	</appender>
+    
+    
+    <!-- Async appender to log to console in a flat format -->
+    <appender name="asyncFlatConsole" class="ch.qos.logback.classic.AsyncAppender">
+    	<discardingThreshold >0</discardingThreshold>  
+    	<queueSize>1024</queueSize>  
+		<appender-ref ref="flatConsole" />
+	</appender>
+	
+	<!-- Async appender to log to console in a JSON format -->
+    <appender name="asyncJsonConsole" class="ch.qos.logback.classic.AsyncAppender">
+    	<discardingThreshold >0</discardingThreshold>  
+    	<queueSize>1024</queueSize>  
+		<appender-ref ref="jsonConsole" />
+	</appender>
+	
+	<!-- Async appender to log to file in a JSON format -->
+    <appender name="asyncJsonFile" class="ch.qos.logback.classic.AsyncAppender">
+    	<discardingThreshold >0</discardingThreshold>  
+    	<queueSize>1024</queueSize>  
+		<appender-ref ref="jsonFile" />
+	</appender>
+	
+    
+	<logger name="RocketmqClient" level="WARN"/>
+	<logger name="RocketmqRemoting" level="WARN"/>
+	<logger name="io.lettuce.core" level="ERROR"/>
+	<!-- <logger name="org.springframework" level="WARN"/> -->
+	<logger name="com.netflix" level="WARN"/>
+	<logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="ERROR"/>
+	
+	
+    <!-- 本地的时候激活-->
+	<springProfile name="local">
+		<logger name="com.pcitc.cpc.framework.ribbon" level="INFO" additivity="false">
+			<appender-ref ref="asyncFlatConsole" />
+			<appender-ref ref="asyncJsonFile" />
+		</logger>
+		<logger name="com.pcitc.cpc.framework.utils" level="INFO" additivity="false">
+			<appender-ref ref="asyncFlatConsole" />
+			<appender-ref ref="asyncJsonFile" />
+		</logger>
+		<root level="INFO">
+			<appender-ref ref="asyncFlatConsole" />
+			<!-- <appender-ref ref="asyncJsonConsole" /> -->
+			<appender-ref ref="asyncJsonFile" />
+		</root>
+	</springProfile>
+	
+    <!-- 开发、测试的时候激活-->
+	<springProfile name="dev , uat">
+		<logger name="com.pcitc.cpc.framework.ribbon" level="INFO" additivity="false">
+			<appender-ref ref="asyncJsonConsole" />
+			<appender-ref ref="asyncJsonFile" />
+		</logger>
+		<logger name="com.pcitc.cpc.framework.utils" level="INFO" additivity="false">
+			<appender-ref ref="asyncJsonConsole" />
+			<appender-ref ref="asyncJsonFile" />
+		</logger>
+		<root level="INFO">
+			<!-- <appender-ref ref="asyncFlatConsole" /> -->
+			<appender-ref ref="asyncJsonConsole" />
+			<appender-ref ref="asyncJsonFile" />
+		</root>
+	</springProfile>
+
+    <!-- 生产的时候激活-->
+	<springProfile name="stress, prodA, prodB, prodC">
+		<logger name="com.pcitc.cpc.framework.ribbon" level="INFO" additivity="false">
+			<appender-ref ref="asyncJsonFile" />
+		</logger>
+		<logger name="com.pcitc.cpc.framework.utils" level="INFO" additivity="false">
+			<appender-ref ref="asyncJsonFile" />
+		</logger>
+		<root level="INFO">
+			<appender-ref ref="asyncJsonFile" />
+		</root>
+	</springProfile>
+
+</configuration>

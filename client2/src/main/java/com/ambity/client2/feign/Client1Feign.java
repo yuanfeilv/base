@@ -9,4 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface Client1Feign {
     @RequestMapping("client1")
     String client1();
+    @RequestMapping("clienttest")
+    String clienttest();
 }
