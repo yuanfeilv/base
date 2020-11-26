@@ -1,5 +1,6 @@
 package com.ambity.client2.conguration;
 
+import feign.Logger;
 import feign.RequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,5 +18,10 @@ public class FeignConfiguration {
     @Bean
     public RequestInterceptor requestInterceptor(){
         return new FeignRequestInterceptor();
+    }
+
+    @Bean
+    public Logger.Level feignLog(){
+        return Logger.Level.FULL;
     }
 }

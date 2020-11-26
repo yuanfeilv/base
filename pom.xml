@@ -22,6 +22,7 @@
         <module>springlearn</module>
         <module>sharesphere</module>
         <module>zookeeper</module>
+        <module>zuul</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.RequestContext;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
@@ -20,8 +22,9 @@ import java.util.concurrent.atomic.AtomicStampedReference;
 public class Rest1Controller {
     @RequestMapping("client1")
     public String client1() throws Exception{
-        return "i am client3";
+        return "i am client1";
     }
+
     @RequestMapping("clienttest")
     public String clienttest() throws Exception{
         return "i am clienttest";
@@ -39,6 +42,10 @@ public class Rest1Controller {
     }
 
     public static void main(String[] args) {
+        String b = null;
+        if (b == null){
+
+        }
         Map map = new LinkedHashMap();
         map.put("cc","bbb");
         System.out.println(String.valueOf(map.get("aa")));
