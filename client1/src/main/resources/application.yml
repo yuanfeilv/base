@@ -15,5 +15,9 @@ server:
 ribbon:
   eureka:
     enabled: true
-
+spring:
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
 

@@ -3,6 +3,7 @@ package com.ambity.zookeeper;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.recipes.cache.*;
 import org.apache.curator.framework.state.ConnectionState;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.junit.After;
@@ -37,6 +38,13 @@ public class CurtatorZookeeper {
 //        String path = curatorFramework.create().forPath("/curator-node");
         // curatorFramework.create().withMode(CreateMode.PERSISTENT).forPath("/curator-node","some-data".getBytes())
         System.out.println(new String(bytes));
+        CuratorCache curatorCache = CuratorCache.build(curatorFramework,"/zk-node");
+        curatorCache.listenable().addListener(new CuratorCacheListener() {
+            @Override
+            public void event(Type type, ChildData oldData, ChildData data) {
+                System.out.println(type);
+            }
+        });
     }
     @After
     public void test(){
