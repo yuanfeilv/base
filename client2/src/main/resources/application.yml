@@ -22,7 +22,7 @@ ribbon:
 #    clients: pay-bestpay-code
 feign:
   hystrix:
-   enabled: true    #feign客户端对Hystrix支持，默认是关闭
+   enabled: false    #feign客户端对Hystrix支持，默认是关闭
 hystrix:
   config:
     stream:
@@ -43,7 +43,8 @@ hystrix:
           thread:
             timeoutInMilliseconds: 45000
   threadpool:
-
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
 
 client1:
   ribbon:
@@ -53,3 +54,14 @@ client1:
     OkToRetryOnAllOperations: true #对所有请求都进行重试
     MaxAutoRetriesNextServer: 1 #切换实例的重试次数
     MaxAutoRetries: 0 #对当前实例的重试
+spring:
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+  datasource1:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: ambity
