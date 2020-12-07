@@ -27,11 +27,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-alibaba-dependencies</artifactId>-->
-<!--                <version>2.0.2.RELEASE</version>-->
-<!--            </dependency>-->
         </dependencies>
 
     </dependencyManagement>
@@ -69,7 +64,7 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
-<!--            <version>2.0.2.RELEASE</version>-->
+            <version>2.1.2.RELEASE</version>
             <exclusions>
                 <exclusion>
                     <groupId>io.seata</groupId>

@@ -29,8 +29,8 @@ public class Rest1Controller {
     @Autowired
     Tb1Mapper tb1Mapper;
     @RequestMapping("/client1")
-//    @GlobalTransactional
-    @Transactional
+    @GlobalTransactional(rollbackFor = Exception.class)
+//    @Transactional
     public String client1(){
         Tb1 tb1 = tb1Mapper.selectByPrimaryKey(1);
         System.out.println(RootContext.getXID());
