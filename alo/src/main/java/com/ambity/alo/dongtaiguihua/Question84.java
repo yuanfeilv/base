@@ -1,62 +1,19 @@
 package com.ambity.alo.dongtaiguihua;
 
-import javax.validation.constraints.Max;
 import java.util.Stack;
 
 /**
- * 给定一个仅包含0 和 1 、大小为 rows x cols 的二维二进制矩阵，找出只包含 1 的最大矩形，并返回其面积。
- * 输入：matrix =[
- * ["1","0","1","0","0"],
- * ["1","0","1","1","1"],
- * ["1","1","1","1","1"],
- * ["1","0","0","1","0"]
- * ]
- * 输出：6
- * 解释：最大矩形如上图所示。
- * 示例 2：
+ * 给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。
  *
- * 输入：matrix = []
- * 输出：0
- * 示例 3：
+ * 求在该柱状图中，能够勾勒出来的矩形的最大面积。
+ * 示例:
  *
- * 输入：matrix = [["0"]]
- * 输出：0
- * 示例 4：
- *
- * 输入：matrix = [["1"]]
- * 输出：1
- *  dp 是以当前节点为右下节点的 最大举行的 长和宽
+ * 输入: [6,7,5,2,4,5,9,3]
+ * −1,0,−1,−1,3,4,5,3
+ * 2,2,3,8,7,7,7,8
+ * 单调栈解法
  */
-public class Question85 {
-    public static void main(String[] args) {
-        Question85 question85 = new Question85();
-
-        char[][] a = new char[][]{
-                {'1','0','1','0','0'},
-                {'1','0','1','1','1'},
-                {'1','1','1','1','1'},
-                {'1','0','0','1','0'}
-        };
-        System.out.println(question85.maximalRectangle(a));
-    }
-    public int maximalRectangle(char[][] matrix) {
-        int max = 0;
-        if (matrix.length==0){
-            return 0;
-        }
-        int[] dp = new int[matrix[0].length];
-        for (int i =0; i < matrix.length;i ++){
-            for (int j =0; j < matrix[0].length;j ++){
-                if (matrix[i][j] == '0'){
-                    dp[j] = 0;
-                }else {
-                    dp[j] = dp[j] + 1;
-                }
-            }
-            max = Math.max(largestRectangleArea(dp),max);
-        }
-        return max;
-    }
+public class Question84 {
     public int largestRectangleArea(int[] heights) {
         if (heights.length==0){
             return 0;
@@ -110,5 +67,11 @@ public class Question85 {
             max = Math.max(heights[i] * (dp_right[i]-dp_left[i]-1),max);
         }
         return max;
+    }
+
+    public static void main(String[] args) {
+        Question84 question84 = new Question84();
+        int[] a = {6,7,5,6};
+        System.out.println(question84.largestRectangleArea(a));
     }
 }

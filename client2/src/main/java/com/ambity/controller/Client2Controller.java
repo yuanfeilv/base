@@ -27,11 +27,7 @@ public class Client2Controller {
         tb2.setId(1);
         tb2.setValue("client2");
         tb2Mapper.updateByPrimaryKeySelective(tb2);
-        try {
-            client1Feign.client1();
-        }catch (Exception e){
-
-        }
+        client1Feign.client1();
         System.out.println(RootContext.getXID());
 //        ContextHolder.md.set(name);
         return "ok";
