@@ -18,14 +18,13 @@ import java.util.List;
 @SpringBootApplication
 @EnableEurekaClient
 // RibbonClient 中的value 是服务名，configuration 是自定义的策略类
-//@RibbonClients(value = {@RibbonClient(value = "restpay-ali-app",configuration = Myrule.class)})
+@RibbonClients(value = {@RibbonClient(value = "restpay-ali-app",configuration = Myrule.class)})
 public class RibbonApplication {
 
     public static void main(String[] args) {
         ApplicationContext applicationContext =  SpringApplication.run(RibbonApplication.class, args);
         Object appnames = applicationContext.getBeanDefinitionNames();
         System.out.println(appnames.getClass());
-
     }
 
     @Bean
@@ -33,6 +32,5 @@ public class RibbonApplication {
     public RestTemplate restTemplate(){
         return new RestTemplate();
     }
-
 
 }

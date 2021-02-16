@@ -35,6 +35,7 @@ public class CurtatorZookeeper {
     @Test
     public void testCreate() throws Exception {
         byte[] bytes = curatorFramework.getData().forPath("/zk-node");
+
 //        String path = curatorFramework.create().forPath("/curator-node");
         // curatorFramework.create().withMode(CreateMode.PERSISTENT).forPath("/curator-node","some-data".getBytes())
         System.out.println(new String(bytes));

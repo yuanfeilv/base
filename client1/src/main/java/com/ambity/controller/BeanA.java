@@ -31,10 +31,6 @@ public class BeanA {
     }
 
     public static void main(String[] args) {
-        String a = "74";
-        System.out.println(a.hashCode()/32%8);
-        System.out.println(a.hashCode()%32);
-        System.out.println(238/32);
-        System.out.println(238/8);
+
     }
 }

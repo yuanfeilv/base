@@ -16,15 +16,22 @@
     <description>Demo project for Spring Boot</description>
 
     <modules>
-        <module>jvm-learn</module>
         <module>kafka-learn</module>
+        <module>jvm-learn</module>
+        <module>redis</module>
+        <module>ribbon</module>
+        <module>sharesphere</module>
+        <module>springlearn</module>
+        <module>springboot-autoconfigution</module>
+        <module>springboot-war-test</module>
         <module>springbootbase</module>
         <module>springlearn</module>
-        <module>sharesphere</module>
         <module>zookeeper</module>
         <module>zuul</module>
         <module>eureka</module>
         <module>mybatis-generate</module>
+        <module>iolearn</module>
+        <module>nettylearn</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

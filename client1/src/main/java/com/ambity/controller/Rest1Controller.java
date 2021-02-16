@@ -27,8 +27,10 @@ import java.util.concurrent.atomic.AtomicStampedReference;
 
 @RestController
 public class Rest1Controller {
+
     @Autowired
     SqlService sqlService;
+
     @RequestMapping("/client1")
     public String client1(){
         sqlService.throwerror();

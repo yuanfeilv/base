@@ -25,6 +25,7 @@ public class ZookeeperClientTest {
 
     @Before
     public void init() {
+
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(5000, 30);
         curatorFramework = CuratorFrameworkFactory.builder().connectString(getConnectStr())
                 .retryPolicy(retryPolicy)

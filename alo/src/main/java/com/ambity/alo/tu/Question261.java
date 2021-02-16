@@ -12,7 +12,8 @@ import java.util.Stack;
  * 深度优先遍历看是否能回到当前起点,树的条件是没有循环，且深度优先可以遍历到所有的节点
  */
 public class Question261 {
-    public boolean validTree(int n, int[][] edges) {
+    public boolean validTreeDFS(int n, int[][] edges) {
+
         int[] isVisit = new int[n];
         //构建邻接矩阵
         int[][] graph = new int[n][n];

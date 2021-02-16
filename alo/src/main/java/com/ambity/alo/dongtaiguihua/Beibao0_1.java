@@ -1,5 +1,7 @@
 package com.ambity.alo.dongtaiguihua;
 
+import java.util.PriorityQueue;
+
 public class Beibao0_1 {
     public static int getMax(int packWight,int num,int[]numVal,int[] numWight){
         if (num==0||packWight==0){
