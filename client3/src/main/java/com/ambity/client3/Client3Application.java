@@ -1,4 +1,4 @@
-package com.ambity.client1;
+package com.ambity.client3;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

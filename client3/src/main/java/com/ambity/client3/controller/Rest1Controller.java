@@ -1,4 +1,4 @@
-package com.ambity.client1.controller;
+package com.ambity.client3.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
