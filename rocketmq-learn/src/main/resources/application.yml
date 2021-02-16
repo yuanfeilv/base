@@ -1,0 +1,4 @@
+rocketmq:
+  name-server: 10.238.148.58:9876
+  producer:
+    group: testProduct
