@@ -1,0 +1,6 @@
+logging:
+  config: classpath:logback-spring.xml
+  #  config: classpath:log4j2.xml
+  #  path: ./logs
+  level:
+    root: info

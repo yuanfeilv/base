@@ -1,0 +1,15 @@
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: 10.238.148.105:9092
+      acks: 1
+      batch-size: 16384
+      retries: 3
+      buffer-memory: 33554432
+      properties:
+        partitioner:
+          class: com.ambity.kafkalearn.kafka.MyPartioner
+
+#      auto-offset-reset: earliest
+server:
+  port: 8082

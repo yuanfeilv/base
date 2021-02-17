@@ -1,0 +1,51 @@
+spring:
+  shardingsphere:
+    datasource:
+      names: ds0,ds1
+      ds0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://10.238.148.35:3306/shopds0?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: ambity
+      ds1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://10.238.148.35:3306/shopds1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: ambity
+    sharding:
+      default-database-strategy:
+        inline:
+          sharding-column: user_id
+          algorithm-expression: ds$->{user_id % 2}
+      binding-tables: t_order,t_order_item
+#      broadcast-tables: t_address
+      tables:
+        t_order:
+          actual-data-nodes: ds$->{0..1}.t_order_$->{0..1}
+          key-generator:
+            column: order_id
+            type: SNOWFLAKE
+            props:
+              worker:
+                id: 123
+          table-strategy:
+            inline:
+              algorithm-expression: t_order_$->{order_id % 2}
+              sharding-column: order_id
+        t_order_item:
+          actual-data-nodes: ds$->{0..1}.t_order_item_$->{0..1}
+          key-generator:
+            column: order_item_id
+            type: SNOWFLAKE
+            props:
+              worker:
+                id: 123
+          table-strategy:
+            inline:
+              algorithm-expression: t_order_item_$->{order_id % 2}
+              sharding-column: order_id
+#
+mybatis:
+   type-aliases-package: com.ambity.sharesphere.dto

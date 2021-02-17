@@ -1,0 +1,11 @@
+#spring:
+#  redis:
+#    database: 1
+#    sentinel:
+#      master: mymaster # 主节点名称
+#      nodes: 10.238.148.30:26379,10.238.148.31:26379,10.238.148.32:26379 # 哨兵集群的节点
+#    lettuce:
+#      pool:
+#        min-idle: 3
+#        max-idle: 8
+#        max-active: 10
